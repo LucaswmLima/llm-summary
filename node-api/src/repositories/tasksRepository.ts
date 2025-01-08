@@ -5,11 +5,10 @@ interface Task {
   id: number;
   text: string;
   summary: string | null;
-  lang: string; // Novo campo lang para escolha do idioma
+  lang: string;
 }
 
 export class TasksRepository {
-  private tasks: Task[] = [];
   private filePath: string;
   private currentId: number = 1;
 
@@ -19,83 +18,82 @@ export class TasksRepository {
   }
 
   // Carrega as tarefas do arquivo JSON
-  private loadTasks() {
+  private loadTasks(): { tasks: Task[]; currentId: number } {
     if (fs.existsSync(this.filePath)) {
       const data = fs.readFileSync(this.filePath, 'utf-8');
       if (data.trim() === '') {
         console.error('O arquivo JSON está vazio, inicializando dados padrão.');
-        this.tasks = [];
-        this.currentId = 1;
+        return { tasks: [], currentId: 1 };
       } else {
         try {
           const loadedTasks = JSON.parse(data);
-          this.tasks = loadedTasks.tasks || [];
-          this.currentId = loadedTasks.currentId || 1;
+          return { tasks: loadedTasks.tasks || [], currentId: loadedTasks.currentId || 1 };
         } catch (error) {
           console.error('Erro ao parsear o arquivo JSON:', error);
-          this.tasks = [];
-          this.currentId = 1;
+          return { tasks: [], currentId: 1 };
         }
       }
     } else {
       console.error('Arquivo não encontrado, criando um novo arquivo.');
-      this.tasks = [];
-      this.currentId = 1;
+      return { tasks: [], currentId: 1 };
     }
   }
 
   // Salva as tarefas no arquivo JSON
-  private saveTasks() {
-    const data = JSON.stringify(
-      { tasks: this.tasks, currentId: this.currentId },
-      null,
-      2
-    );
+  private saveTasks(tasks: Task[], currentId: number): void {
+    const data = JSON.stringify({ tasks, currentId }, null, 2);
     fs.writeFileSync(this.filePath, data);
   }
 
   // Cria uma nova tarefa
   createTask(text: string, lang: string): Task {
+    const { tasks, currentId } = this.loadTasks();
     const task: Task = {
-      id: this.currentId++,
+      id: currentId,
       text,
       summary: null,
       lang,
     };
-    this.tasks.push(task);
-    this.saveTasks();
+    tasks.push(task);
+    this.saveTasks(tasks, currentId + 1);
     return task;
   }
 
   // Atualiza o resumo de uma tarefa
   updateTask(id: number, summary: string): Task | null {
-    const taskIndex = this.tasks.findIndex(t => t.id === id);
+    const { tasks, currentId } = this.loadTasks();
+    const taskIndex = tasks.findIndex(t => t.id === id);
     if (taskIndex > -1) {
-      this.tasks[taskIndex].summary = summary;
-      this.saveTasks();
-      return this.tasks[taskIndex];
+      tasks[taskIndex].summary = summary;
+      this.saveTasks(tasks, currentId);
+      return tasks[taskIndex];
     }
     return null;
   }
 
   // Obtém uma tarefa pelo ID
   getTaskById(id: number): Task | null {
-    return this.tasks.find(t => t.id === id) || null;
+    const { tasks } = this.loadTasks();
+    return tasks.find(t => t.id === id) || null;
   }
 
   // Obtém todas as tarefas
   getAllTasks(): Task[] {
-    return this.tasks;
+    const { tasks } = this.loadTasks();
+    return tasks;
   }
 
   // Deleta uma tarefa
   deleteTask(id: number): boolean {
-    const taskIndex = this.tasks.findIndex(t => t.id === id);
+    const { tasks, currentId } = this.loadTasks();
+    const taskIndex = tasks.findIndex(t => t.id === id);
     if (taskIndex > -1) {
-      this.tasks.splice(taskIndex, 1);
-      this.saveTasks();
+      console.log(`Deletando tarefa com id: ${id}`);
+      tasks.splice(taskIndex, 1);
+      this.saveTasks(tasks, currentId);
       return true;
     }
+    console.log(`Tarefa com id: ${id} não encontrada.`);
     return false;
   }
 }
