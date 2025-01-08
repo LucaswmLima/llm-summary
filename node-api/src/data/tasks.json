@@ -1,0 +1,17 @@
+{
+  "tasks": [
+    {
+      "id": 1,
+      "text": "A Inteligência Artificial (IA) tem se tornado uma ferramenta poderosa em diversas áreas, desde a medicina até a educação. Ela é capaz de realizar tarefas complexas, como diagnosticar doenças, prever padrões de comportamento e até mesmo gerar conteúdos criativos. No entanto, apesar de seu potencial, a IA também levanta questões éticas e sociais importantes. A principal preocupação é como garantir que os sistemas de IA tomem decisões justas e transparentes. Outro desafio é o impacto da IA no mercado de trabalho, já que ela pode substituir funções humanas em diversas indústrias. Por isso, é fundamental que o desenvolvimento e a implementação da IA sejam feitos com responsabilidade, levando em consideração os impactos sociais e econômicos.",
+      "summary": " A IA é uma ferramenta poderosa com aplicações em áreas como medicina e educação, capaz de realizar tarefas complexas como diagnósticos e previsões de comportamento. No entanto, seu uso também gera preocupações éticas, principalmente sobre a justiça e transparência das decisões tomadas por sistemas de IA. Além disso, há o desafio do impacto da IA no mercado de trabalho, onde ela pode substituir funções humanas. É crucial que o desenvolvimento e a implementação da IA sejam conduzidos de forma responsável, considerando os impactos sociais e econômicos.",
+      "lang": "pt"
+    },
+    {
+      "id": 3,
+      "text": "A Inteligência Artificial (IA) tem se tornado uma ferramenta poderosa em diversas áreas, desde a medicina até a educação. Ela é capaz de realizar tarefas complexas, como diagnosticar doenças, prever padrões de comportamento e até mesmo gerar conteúdos criativos. No entanto, apesar de seu potencial, a IA também levanta questões éticas e sociais importantes. A principal preocupação é como garantir que os sistemas de IA tomem decisões justas e transparentes. Outro desafio é o impacto da IA no mercado de trabalho, já que ela pode substituir funções humanas em diversas indústrias. Por isso, é fundamental que o desenvolvimento e a implementação da IA sejam feitos com responsabilidade, levando em consideração os impactos sociais e econômicos.",
+      "summary": " A IA é uma ferramenta poderosa com aplicações em áreas como medicina e educação, capaz de realizar tarefas complexas como diagnósticos e previsões de comportamento. No entanto, seu uso também gera preocupações éticas, principalmente sobre a justiça e transparência das decisões tomadas por sistemas de IA. Além disso, há o desafio do impacto da IA no mercado de trabalho, onde ela pode substituir funções humanas. É crucial que o desenvolvimento e a implementação da IA sejam conduzidos de forma responsável, considerando os impactos sociais e econômicos.",
+      "lang": "pt"
+    }
+  ],
+  "currentId": 4
+}
