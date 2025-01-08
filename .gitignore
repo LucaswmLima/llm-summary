@@ -3,4 +3,4 @@ __pycache__/
 node_modules/
 .env
 **.DS_Store
-/data/tasks.json
+/node-api/src/data/
